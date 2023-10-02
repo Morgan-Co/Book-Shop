@@ -1,0 +1,23 @@
+@import url(../../../assets/styles/fonts.css);
+
+* {
+    outline: 1px solid #1c2a49;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 116px;
+    max-width: 1120px;
+    width: 100%;
+}
+
+
+

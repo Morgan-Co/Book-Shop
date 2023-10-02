@@ -1,0 +1,19 @@
+.userSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 120.839px;
+    width: 100%;
+    height: 17px;
+}
+
+.userSectionLink {
+    display: flex;
+    align-items: center;
+    transition: all .3s ease 0s;
+}
+
+.userSectionLink:hover {
+    opacity: 0.5;
+}
