@@ -1,0 +1,9 @@
+.productSection {
+    display: flex;
+}
+
+@media (max-width: 600px) {
+    .productSection {
+        flex-direction: column;
+    }
+}

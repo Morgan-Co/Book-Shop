@@ -1,0 +1,28 @@
+@import url(../../../assets/styles/fonts.css);
+
+/* * {
+    outline: 1px solid #1c2a49;
+} */
+
+.header {
+    display: flex;
+    width: 100%;
+    background: #ffffff;
+    justify-content: center;
+}
+
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 116px;
+    max-width: 1120px;
+    width: 100%;
+    margin: 0 20px;
+}
+
+@media (max-width: 690px) {
+    .headerContent {
+        gap: 20px;
+    }
+}

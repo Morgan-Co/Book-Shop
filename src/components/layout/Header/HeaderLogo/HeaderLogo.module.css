@@ -1,0 +1,11 @@
+.headerLogo {
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: auto;
+}
+
+.headerLogo a {
+    display: flex;
+    align-items: center;
+}
