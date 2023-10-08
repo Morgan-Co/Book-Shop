@@ -1,14 +1,16 @@
-import { useRef } from 'react'
-
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { useRef, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styles from './CategoriesItem.module.css'
 
-function CategoriesItem({ title }) {
+function CategoriesItem({ title, select, defaultCategory }) {
     const liRef = useRef(null)
+    const [selectedCategory, setSelectedCategory] = useState('')
 
-    const addBulletClass = (e) => {
-        e.preventDefault()
+    useEffect(() => {
+        select(selectedCategory)
+    }, [selectedCategory, select])
+
+    function addBulletClass() {
         const listItems = document.querySelectorAll(`.${styles.liItem}`)
         listItems.forEach((item) => {
             if (item === liRef.current) {
@@ -18,15 +20,24 @@ function CategoriesItem({ title }) {
             }
         })
     }
+    useEffect(() => {
+        const listItems = document.querySelectorAll(`.${styles.liItem}`)
+        listItems.forEach((item) => {
+            if (item.innerText.toLowerCase() === defaultCategory) {
+                item.classList.add("bullet")
+            }
+        })
+    }, [defaultCategory])
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        addBulletClass()
+        setSelectedCategory(title)
+    }
 
     return (
         <li ref={liRef} className={styles.liItem}>
-            <a
-                href="/"
-                onClick={() => {
-                    addBulletClass()
-                }}
-            >
+            <a href="/" onClick={handleClick}>
                 {title}
             </a>
         </li>
@@ -35,6 +46,8 @@ function CategoriesItem({ title }) {
 
 CategoriesItem.propTypes = {
     title: PropTypes.string.isRequired,
+    select: PropTypes.func.isRequired,
+    defaultCategory: PropTypes.string.isRequired,
 }
 
 export default CategoriesItem

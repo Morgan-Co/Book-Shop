@@ -1,56 +1,64 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
+import starRating from '../../../../../../../utils/starRating'
 import styles from './BookItem.module.css'
 
 const bookShape = PropTypes.shape({
-    volumeInfo: PropTypes.shape({
-        imageLinks: PropTypes.shape({
-            thumbnail: PropTypes.string.isRequired,
-        }).isRequired,
-        authors: PropTypes.arrayOf(PropTypes.string).isRequired,
-        title: PropTypes.string.isRequired,
-        ratingsCount: PropTypes.number,
-        description: PropTypes.string.isRequired,
-    }).isRequired,
-
-    saleInfo: PropTypes.shape({
-        listPrice: PropTypes.shape({
-            amount: PropTypes.number,
-        }),
-    }).isRequired,
+    imgUrl: PropTypes.string.isRequired,
+    authors: PropTypes.arrayOf(PropTypes.string),
+    title: PropTypes.string.isRequired,
+    rating: PropTypes.number,
+    reviews: PropTypes.number,
+    description: PropTypes.string,
+    price: PropTypes.number,
+    inBasket: PropTypes.bool,
+    id: PropTypes.string,
 })
 
-function BookItem({ book }) {
-    const rating = book.volumeInfo.ratingsCount
-        ? `${book.volumeInfo.ratingsCount} reviews`
-        : 'no reviews'
-    const price = book.saleInfo.listPrice
-        ? `${book.saleInfo.listPrice.amount} $`
-        : 'no price'
+function BookItem({ book, updateAllBooks }) {
+    const buttonRef = useRef(null)
+    const [inBasket, setInBasket] = useState(book.inBasket)
+    const bookReviews = book.reviews ? `${book.reviews} reviews` : 'no reviews'
+    const bookRating = book.rating
+    const price = book.price ? `${book.price} $` : 'no price'
+
+    const addInBasket = () => {
+        setInBasket(!inBasket);
+        updateAllBooks(book.id, !inBasket);
+      };
+
+      
+    
 
     return (
         <div className={styles.bookItem}>
             <div className={styles.bookImg}>
-                <img
-                    src={book.volumeInfo.imageLinks.thumbnail}
-                    alt={book.volumeInfo.title}
-                />
+                <img src={book.imgUrl} alt={book.title} />
             </div>
             <div className={styles.bookInfo}>
-                <h4 className={styles.bookAuthor}>{book.volumeInfo.authors}</h4>
-                <h3 className={styles.bookTitle}>{book.volumeInfo.title}</h3>
+                <h4 className={styles.bookAuthor}>{book.authors}</h4>
+                <h3 className={styles.bookTitle}>{book.title}</h3>
                 <div className={styles.bookEvaluation}>
-                    <div>rating</div>
-                    <div className={styles.bookReviews}>{rating}</div>
+                    <div className={styles.bookRating}>
+                        {starRating(bookRating)}
+                    </div>
+                    <div className={styles.bookReviews}>{bookReviews}</div>
                 </div>
                 <div className={styles.bookDescription}>
-                    <p>{book.volumeInfo.description}</p>
+                    <p>{book.description}</p>
                 </div>
                 <div className={styles.bookPrice}>
                     <span>{price}</span>
                 </div>
-                <button className={styles.bookButton} type="submit">
-                    buy now
+                <button
+                    ref={buttonRef}
+                    className={`${styles.bookButton} ${
+                        inBasket ? styles.bought : ''
+                    }`}
+                    type="submit"
+                    onClick={addInBasket}
+                >
+                    {inBasket ? 'in the cart' : 'buy now'}
                 </button>
             </div>
         </div>
@@ -59,6 +67,7 @@ function BookItem({ book }) {
 
 BookItem.propTypes = {
     book: bookShape.isRequired,
+    updateAllBooks: PropTypes.func.isRequired,
 }
 
 export default BookItem

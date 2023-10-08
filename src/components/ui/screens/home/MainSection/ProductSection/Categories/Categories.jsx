@@ -1,8 +1,8 @@
-
+import PropTypes from 'prop-types'
 import CategoriesItem from './CategoriesItem/CategoriesItem'
 import styles from './Categories.module.css'
 
-function Categories() {
+function Categories({ select, defaultCategory }) {
     const categories = [
         { title: 'Architecture' },
         { title: 'Art & Fashion' },
@@ -20,7 +20,6 @@ function Categories() {
         { title: 'Science' },
         { title: 'Technology' },
         { title: 'Travel & Maps' },
-        // Добавьте остальные категории здесь
     ]
 
     const categoriesWithId = categories.map((category, index) => ({
@@ -33,15 +32,21 @@ function Categories() {
         <div className={styles.categories}>
             <div>
                 {categoriesWithId.map((category) => (
-                    <CategoriesItem key={category.id} title={category.title}/>
+                    <CategoriesItem
+                        key={category.id}
+                        title={category.title}
+                        select={select}
+                        defaultCategory={defaultCategory}
+                    />
                 ))}
             </div>
         </div>
     )
 }
 
-export default Categories
+Categories.propTypes = {
+    select: PropTypes.func.isRequired,
+    defaultCategory: PropTypes.string.isRequired,
+}
 
-/* Разобраться как сделать так, чтобы не ставить каждый раз индекс вручную,
-а чтобы он ставился автоматически в зависимости от индекса
-и так чтобы линтер не ругался */
+export default Categories

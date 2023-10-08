@@ -9,8 +9,8 @@
  */
 
 html {
-    line-height: 1.15; /* 1 */
-    -webkit-text-size-adjust: 100%; /* 2 */
+    line-height: 1.15; 
+    -webkit-text-size-adjust: 100%;
 }
 
 /* Sections
@@ -358,6 +358,42 @@ li {
     height: 702px !important;
 }
 
+@media (max-width: 900px) {
+    .swiper-wrapper {
+        height: 535px !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .swiper-wrapper {
+        height: 395px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .swiper-wrapper {
+        height: 335px !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .swiper-wrapper {
+        height: 276px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .swiper-wrapper {
+        height: 215px !important;
+    }
+}
+
+@media (max-width: 350px) {
+    .swiper-wrapper {
+        height: 185px !important;
+    }
+}
+
 .swiper-pagination-bullet {
     background: #9e98dc !important;
     width: 12px !important;
@@ -373,19 +409,28 @@ li {
     width: 6px;
     height: 6px;
     display: block;
-    background: #756AD3;
+    background: #756ad3;
     border-radius: 50%;
-    transition: all .3s ease 0s;
+    transition: all 0.3s ease 0s;
     position: absolute;
     left: -10px;
 }
 
 .bullet > a {
-    transition: all .3s ease 0s;
+    transition: all 0.3s ease 0s;
 }
 
 .bullet > a {
     color: #1c2a39 !important;
     font-size: 16px !important;
     font-weight: 700 !important;
+}
+
+@media (max-width: 600px) {
+    .bullet::before {
+        display: none;
+    }
+    .bullet > a {
+        font-size: 12px !important;
+    }
 }

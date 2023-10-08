@@ -11,6 +11,7 @@
 
 .bookInfo {
     max-width: 212px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,7 +56,8 @@
     margin-bottom: 16px;
 }
 
-.bookReviews {
+.bookReviews,
+.bookRating {
     color: #5c6a79;
     font-family: 'Open Sans';
     font-size: 10px;
@@ -69,7 +71,7 @@
     margin-bottom: 16px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;  
+    -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -106,4 +108,26 @@
 .bookButton:hover {
     background: #4c3db2;
     color: #ffffff;
+}
+
+.bought {
+    border: 1px solid #5c6a79 !important;
+    color: #5c6a79 !important;
+}
+
+.emptyStar {
+    color: #eeedf5;
+}
+
+.solidStar,
+.halfStar {
+    color: #f2c94c;
+    width: 12px;
+    height: 12px;
+}
+
+@media (max-width: 463px) {
+    .bookItem {
+        justify-content: center;
+    }
 }

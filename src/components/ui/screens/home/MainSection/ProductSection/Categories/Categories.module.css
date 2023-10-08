@@ -12,3 +12,21 @@
 .categories > div {
     width: max-content;
 }
+
+@media (max-width: 600px) {
+    .categories {
+        position: static;
+        max-width: 100%;
+        padding: 0;
+        margin-bottom: 25px;
+    }
+
+    .categories > div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0 20px;
+        padding: 20px;
+    }
+}

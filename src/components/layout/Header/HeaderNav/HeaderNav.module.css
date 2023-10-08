@@ -26,3 +26,9 @@
 .navItem:hover {
     opacity: 0.5;
 }
+
+@media (max-width: 690px) {
+    .nav {
+        display: none;
+    }
+}

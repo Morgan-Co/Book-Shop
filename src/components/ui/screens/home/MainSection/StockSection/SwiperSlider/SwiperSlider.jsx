@@ -14,10 +14,10 @@ function SwiperSlider() {
             slidesPerView={1}
             pagination={{ clickable: true }}
             allowTouchMove={false}
-            autoplay={{
-                delay: 3000,
-                disableOnInteraction: true,
-            }}
+            // autoplay={{
+            //     delay: 3000,
+            //     disableOnInteraction: true,
+            // }}
         >
             <SwiperSlide className={styles.swiperSlide}>
                 <img src="/banner1.png" alt="" />
